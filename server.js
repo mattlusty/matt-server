@@ -1,6 +1,5 @@
 const http = require("http");
 const mongoose = require("mongoose");
-const { createUser } = require("./controllers/userController.js");
 
 mongoose
   .connect(
@@ -15,9 +14,5 @@ mongoose
   });
 
 var server = http.createServer((req, res) => {
-  console.log("Request received");
-  if (req.url === "/api/users" && req.method === "POST") {
-    console.log("route create user");
-    createUser(req, res);
-  }
+  req.url === "/portfolio/users" ? require("./routes/portfolio/user")(req, res) : "";
 });
