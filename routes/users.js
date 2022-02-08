@@ -7,25 +7,25 @@ const portUsersRouter = express.Router();
 portUsersRouter
   .route("/")
   .get((req, res) => {
-    console.log("GET /portfolio/users");
     res.send("GET /portfolio/users");
   })
   .post((req, res) => {
-    console.log("POST = /portfolio/users");
-    // res.send("POST = /portfolio/users");
-
+    console.log("POSTING");
+    console.log("req: ", req);
     userController.createUser(req, res);
+    // res.send("POST /portfolio/users");
+  })
+  .put((req, res) => {
+    res.send("PUT /portfolio/users");
   });
 
 portUsersRouter
   .route("/:id")
   .get((req, res) => {
-    console.log("xroute = /portfolio/users/:id");
-    res.send("xroute = /portfolio/users/:id");
+    res.send(`GET /portfolio/users/:id id=${req.params.id}`);
   })
   .delete((req, res) => {
-    console.log("xroute = /portfolio/users/:id");
-    res.send("xroute = /portfolio/users/:id");
+    res.send(`DELETE /portfolio/users/:id id=${req.params.id}`);
   });
 
 module.exports = portUsersRouter;

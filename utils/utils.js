@@ -4,11 +4,9 @@ function getPostData(req) {
     try {
       var body = "";
       req.on("data", (chunk) => {
-        console.log("chunk", chunk.toString());
         body += chunk.toString();
       });
       req.on("end", () => {
-        console.log("body", body);
         resolve(body);
       });
     } catch (error) {
