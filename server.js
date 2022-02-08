@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
 
@@ -16,5 +17,7 @@ mongoose
     });
   });
 
-//define routes
+// middleware
+app.use(cors());
+
 app.use("/portfolio/users", require("./routes/users"));
