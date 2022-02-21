@@ -2,30 +2,32 @@ const express = require("express");
 const userController = require("../controllers/user.js");
 const cors = require("cors");
 
-const portUsersRouter = express.Router();
+const router = express.Router();
 
-portUsersRouter
+// route base === "/portfolio/users"
+router
   .route("/")
   .get((req, res) => {
-    res.send("GET /portfolio/users");
+    const body = { message: "GET /portfolio/users" };
+    res.send(JSON.stringify(body));
   })
   .post((req, res) => {
-    console.log("POSTING");
-    console.log("req: ", req);
     userController.createUser(req, res);
-    // res.send("POST /portfolio/users");
   })
   .put((req, res) => {
-    res.send("PUT /portfolio/users");
+    const body = { message: "PUT /portfolio/users" };
+    res.send(JSON.stringify(body));
   });
 
-portUsersRouter
+router
   .route("/:id")
   .get((req, res) => {
-    res.send(`GET /portfolio/users/:id id=${req.params.id}`);
+    const body = { message: `GET /portfolio/users/:id id=${req.params.id}` };
+    res.send(JSON.stringify(body));
   })
   .delete((req, res) => {
-    res.send(`DELETE /portfolio/users/:id id=${req.params.id}`);
+    const body = { message: `DELETE /portfolio/users/:id id=${req.params.id}` };
+    res.send(JSON.stringify(body));
   });
 
-module.exports = portUsersRouter;
+module.exports = router;
